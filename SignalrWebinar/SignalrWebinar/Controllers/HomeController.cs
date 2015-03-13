@@ -3,11 +3,18 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using Microsoft.AspNet.SignalR;
+using SignalrWebinar.Hubs;
 
 namespace SignalrWebinar.Controllers
 {
     public class HomeController : Controller
     {
+        public void CreateWidget()
+        {
+            var widgetHubContext = GlobalHost.ConnectionManager.GetHubContext<WidgetHub>();
+        }
+
         public ActionResult Index()
         {
             return View();
