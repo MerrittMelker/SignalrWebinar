@@ -1,0 +1,20 @@
+﻿@{
+    ViewBag.Title = "Widget Hub Test";
+}
+<div id="widgetCount"></div>
+
+@section scripts
+{
+    <script src="~/Scripts/jquery.signalR-2.2.0.min.js"></script>
+    <script src="/signalr/hubs"></script>
+
+    <script>
+        $(function() {
+            var widgetHub = $.connection.widgetHub;
+            widgetHub.client.updateWidgetCount = function(count) {
+                $("#widgetCount").text("Widgets created: " + count);
+            }
+        });
+        $.connection.hub.start().done();
+    </script>
+}

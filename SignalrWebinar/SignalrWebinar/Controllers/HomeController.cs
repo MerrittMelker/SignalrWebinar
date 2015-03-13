@@ -35,5 +35,10 @@ namespace SignalrWebinar.Controllers
 
             return View();
         }
+
+        public ActionResult WidgetHubTest()
+        {
+            return View();
+        }
     }
 }
