@@ -12,7 +12,9 @@ namespace SignalrWebinar.Controllers
     {
         public void CreateWidget()
         {
+            WidgetHub.WidgetCount++;
             var widgetHubContext = GlobalHost.ConnectionManager.GetHubContext<WidgetHub>();
+            widgetHubContext.Clients.All.updateWidgetCount(WidgetHub.WidgetCount);
         }
 
         public ActionResult Index()
