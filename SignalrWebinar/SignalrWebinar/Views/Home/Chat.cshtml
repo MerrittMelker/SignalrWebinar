@@ -1,0 +1,29 @@
+﻿@{
+    ViewBag.Title = "Widget Hub Test";
+}
+
+<input id="message"/>
+<button id="sendMessage">Send Message</button>
+<div id="chatLog"></div>
+
+@section scripts
+{
+    <script src="~/Scripts/jquery.signalR-2.2.0.min.js"></script>
+    <script src="/signalr/hubs"></script>
+
+    <script>
+        $(function() {
+            var chatHub = $.connection.chatHub;
+
+            chatHub.client.broadcastMessage = function(message) {
+                $("#chatLog").append(message + "<br/>");
+            };
+
+            $.connection.hub.start().done();
+            $("#sendMessage").click(function() {
+                var message = $("#message").val();
+                chatHub.server.sendMessage(message);
+            });
+        });
+    </script>
+}
