@@ -10,7 +10,8 @@ namespace SignalrWebinar.Hubs
     {
         public void SendMessage(string message)
         {
-            Clients.All.broadcastMessage(message);
+            Clients.Caller.broadcastMessage("Me: " + message);
+            Clients.Others.broadcastMessage("Anon: " + message);
         }
     }
 }
